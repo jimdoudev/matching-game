@@ -79,13 +79,13 @@ h1 {
 }
 
 .deck .card.show {
-    font-size: 33px;
+    font-size: 1em;
 }
 
 .deck .card.match {
     cursor: default;
     background: #02ccba;
-    font-size: 33px;
+    font-size: 1em;
 }
 
 /*
@@ -94,7 +94,7 @@ h1 {
 
 .score-panel {
     text-align: left;
-    width: 100%;
+    width: 80%;
     margin-bottom: 10px;
 }
 
@@ -115,6 +115,40 @@ h1 {
     cursor: pointer;
 }
 
+/*
+ * Media queries
+ */
 
+@media screen and (min-width: 320px) {
+    .deck .card.show {
+    font-size: 1.5em;
+}
 
+.deck .card.match {
+    font-size: 1.5em;
+}
 
+h1 {
+    font-size: 2.5em;
+}
+}
+
+@media screen and (min-width: 550px) {
+    .deck .card.show {
+    font-size: 2em;
+}
+
+.deck .card.match {
+    font-size: 2em;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+.container {
+    width: 550px;
+    margin-right: auto;
+    margin-left: auto;
+}
+}

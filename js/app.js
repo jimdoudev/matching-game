@@ -19,21 +19,21 @@ let list = ["fa-diamond",
     "fa-bicycle",
     "fa-bomb"
 ];
-deck = document.querySelector('.deck');
-html = "";
-card = document.querySelector('.card');
-opened = [];
-moves = document.querySelector('.moves');
-moveCounter = 0;
-matches = 0;
-stars = document.querySelector('.stars').children;
-restart = document.querySelector('.restart');
-sound = document.querySelector('.sound');
-timer = document.querySelector(".timer");
-results = document.querySelector(".results");
-rating = document.querySelector('.stars');
-modal = document.getElementById('modal');
-closeModal = document.querySelector(".close");
+let deck = document.querySelector('.deck');
+let html = "";
+let card = document.querySelector('.card');
+let opened = [];
+let moves = document.querySelector('.moves');
+let moveCounter = 0;
+let matches = 0;
+let stars = document.querySelector('.stars').children;
+let restart = document.querySelector('.restart');
+let sound = document.querySelector('.sound');
+let timer = document.querySelector(".timer");
+let results = document.querySelector(".results");
+let rating = document.querySelector('.stars');
+let modal = document.getElementById('modal');
+let closeModal = document.querySelector(".close");
 
 
 /*
@@ -60,7 +60,7 @@ function emptyDeck() {
     while (fc) {
         deck.removeChild(fc);
         fc = deck.firstChild;
-    };
+    }
 }
 
 //Ends the game
@@ -69,7 +69,7 @@ function endGame() {
     results.innerHTML = `<span>Moves: ${moveCounter}</span>
 						<span>Time: ${timer.textContent}</span>
 						<span class="score-panel">Rating:
-						<ul class="stars">${rating.innerHTML}</ul></span>`
+						<ul class="stars">${rating.innerHTML}</ul></span>`;
     modal.style.display = "block";
 }
 
@@ -162,12 +162,12 @@ function addToOpened(evt) {
 let t;
 
 function startTimer() {
-    let time = 0
+    let time = 0;
     t = setInterval(function() {
-        time++
-        let sec = time % 60
-        let min = (time - sec) / 60 % 60
-        let str = ("0" + min).slice(-2) + ':' + ("0" + sec).slice(-2)
+        time++;
+        let sec = time % 60;
+        let min = (time - sec) / 60 % 60;
+        let str = ("0" + min).slice(-2) + ':' + ("0" + sec).slice(-2);
         timer.textContent = str;
     }, 1000);
 }
@@ -197,7 +197,7 @@ deck.addEventListener('click', function(e) {
     if (matches === 8) {
         endGame();
     }
-})
+});
 
 
 //Starts the timer on click
@@ -205,7 +205,7 @@ deck.addEventListener('click', function(e) {
     if (e.target.nodeName === 'LI') {
         startTimer();
     }
-}, { once: true })
+}, { once: true });
 
 //Restarts the game
 restart.addEventListener('click', function() {
@@ -220,8 +220,8 @@ restart.addEventListener('click', function() {
         if (e.target.nodeName === 'LI') {
             startTimer();
         }
-    }, { once: true })
-})
+    }, { once: true });
+});
 
 //Turns off and on the sound
 sound.addEventListener('click', function() {
@@ -233,7 +233,7 @@ sound.addEventListener('click', function() {
         document.querySelector('audio').muted = true;
     }
 
-})
+});
 
 //Closes the congratulations modal and restarts the game
 closeModal.addEventListener('click', function() {
@@ -249,7 +249,7 @@ closeModal.addEventListener('click', function() {
         if (e.target.nodeName === 'LI') {
             startTimer();
         }
-    }, { once: true })
-})
+    }, { once: true });
+});
 
 startGame();

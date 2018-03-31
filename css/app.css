@@ -38,7 +38,7 @@ h1 {
 }
 
 
-span {
+.score-panel span {
     padding-left: 10px;
 }
 
@@ -167,12 +167,10 @@ span {
 
 .restart:hover {
     color: #2e3d49;
-    cursor: pointer;
 }
 
 .sound:hover {
     color: #2e3d49;
-    cursor: pointer;
 }
 
 

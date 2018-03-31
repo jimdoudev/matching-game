@@ -38,10 +38,6 @@ h1 {
 
 }
 
-.restart:hover {
-    color: #2e3d49;
-    cursor: pointer;
-}
 
 span {
     padding-left: 10px;
@@ -105,6 +101,10 @@ span {
     font-size: 1em;
 }
 
+.deck .card.unmatch {
+    background: #cc1212;
+}
+
 .deck .card:hover,
 .deck .card:focus {
     background-color: #bbbbbb;
@@ -114,6 +114,16 @@ span {
 .deck .card.open:focus {
     background: #696969;
 }
+
+.deck .card.unmatch:hover,
+.deck .card.unmatch:focus  {
+    background: #cc1212;
+}
+.deck .card.match:hover,
+.deck .card.match:focus  {
+    background: #90ee90;
+}
+
 
 /*
  * Styles for the Score Panel
@@ -139,6 +149,22 @@ span {
 
 .score-panel .restart {
     float: right;
+    cursor: pointer;
+    padding-left: 1em;
+}
+
+.score-panel .sound {
+    float: right;
+    cursor: pointer;
+}
+
+.restart:hover {
+    color: #2e3d49;
+    cursor: pointer;
+}
+
+.sound:hover {
+    color: #2e3d49;
     cursor: pointer;
 }
 

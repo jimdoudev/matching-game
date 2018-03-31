@@ -27,6 +27,7 @@ let list = ["fa-diamond",
 	matches = 0;
 	stars = document.querySelector('.stars').children;
 	restart = document.querySelector('.restart');
+	sound = document.querySelector('.sound');
 	timer = document.querySelector(".timer");
 	results = document.querySelector(".results");
 	rating = document.querySelector('.stars');
@@ -118,6 +119,17 @@ restart.addEventListener('click', function() {
 	location.reload();
 })
 
+sound.addEventListener('click', function() {
+	if(sound.firstElementChild.classList.contains("fa-volume-off")) {
+		sound.innerHTML = '<i class="fa fa-volume-up"></i>';
+		document.querySelector('audio').muted = false;
+	} else {
+		sound.innerHTML = '<i class="fa fa-volume-off"></i>';
+		document.querySelector('audio').muted = true;
+	}
+
+})
+
 closeModal.addEventListener('click', function() {
 	location.reload();
 })
@@ -126,20 +138,24 @@ function checkMatch() {
 	if(opened.length > 1) {
 		if(opened[0] === opened[1]) {
 			const openCards = document.querySelectorAll('.open');
-			openCards[0].classList.add('match');
-			openCards[1].classList.add('match');
-			openCards[0].classList.remove('open');
-			openCards[1].classList.remove('open');
+			openCards[0].classList.add('match', 'animated', 'tada');
+			openCards[1].classList.add('match', 'animated', 'tada');
+			setTimeout(function() {
+			openCards[0].classList.remove('open', 'show', 'animated', 'tada');
+			openCards[1].classList.remove('open', 'show', 'animated', 'tada');
+		    	}, 500);
 			opened = [];
 			counter();
 			starEvaluation();
 			matches++;
 		} else {
 			const openCards = document.querySelectorAll('.open');
+			openCards[0].classList.add('open', 'show', 'animated', 'wobble', 'unmatch');
+			openCards[1].classList.add('open', 'show', 'animated', 'wobble', 'unmatch');
 			setTimeout(function() {
-				openCards[0].classList.remove('open', 'show');
-				openCards[1].classList.remove('open', 'show');
-		    	}, 400);
+				openCards[0].classList.remove('open', 'show', 'animated', 'wobble', 'unmatch');
+				openCards[1].classList.remove('open', 'show', 'animated', 'wobble', 'unmatch');
+		    	}, 500);
 			opened = [];
 			counter();
 			starEvaluation();

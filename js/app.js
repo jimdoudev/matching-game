@@ -99,7 +99,7 @@ function checkMatch() {
             setTimeout(function() {
                 openCards[0].classList.remove('open', 'show', 'animated', 'tada');
                 openCards[1].classList.remove('open', 'show', 'animated', 'tada');
-            }, 500);
+            }, 400);
             opened = [];
             counter();
             starEvaluation();
@@ -111,7 +111,7 @@ function checkMatch() {
             setTimeout(function() {
                 openCards[0].classList.remove('open', 'show', 'animated', 'wobble', 'unmatch');
                 openCards[1].classList.remove('open', 'show', 'animated', 'wobble', 'unmatch');
-            }, 500);
+            }, 400);
             opened = [];
             counter();
             starEvaluation();
@@ -129,10 +129,23 @@ function starEvaluation() {
     }
 }
 
+//Resets the Star Count
+function starReset() {
+	if (moveCounter > 10) {
+        stars[2].style.color = "yellow";
+        stars[1].style.color = "yellow";
+    }
+}
+
 //Counts the moves
 function counter() {
     moveCounter += 1;
     moves.textContent = moveCounter;
+}
+//Resets the move counter
+function resetCounter() {
+	moveCounter = 0;
+	moves.textContent = 0;
 }
 
 //Turns the card
@@ -147,14 +160,12 @@ function addToOpened(evt) {
 
 //Function timer with some modifications from https://jsfiddle.net/hzLf3e38/4/
 let t;
-
 function startTimer() {
     let time = 0
     t = setInterval(function() {
         time++
         let sec = time % 60
         let min = (time - sec) / 60 % 60
-        let hour = (time - sec - min * 60) / 3600
         let str = ("0" + min).slice(-2) + ':' + ("0" + sec).slice(-2)
         timer.textContent = str;
     }, 1000);
@@ -163,6 +174,12 @@ function startTimer() {
 //Stops the timer
 function stopTimer() {
     clearInterval(t);
+}
+
+//Resets the timer
+function resetTimer() {
+	clearInterval(t);
+	timer.textContent = "00:00";
 }
 
 /*
@@ -190,7 +207,18 @@ deck.addEventListener('click', function(e) {
 
 //Restarts the game
 restart.addEventListener('click', function() {
-    location.reload();
+    resetTimer();
+    starReset();
+    resetCounter();
+    opened = [];
+    matches = 0;
+    html = "";
+    startGame();
+    deck.addEventListener('click', function(e) {
+    if (e.target.nodeName === 'LI') {
+        startTimer();
+    	}
+	}, { once: true })
 })
 
 //Turns off and on the sound

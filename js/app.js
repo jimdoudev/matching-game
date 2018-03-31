@@ -20,6 +20,8 @@ let list = ["fa-diamond",
 			"fa-bomb"];
 	deck = document.querySelector('.deck');
 	html = "";
+	card = document.querySelector('.card');
+	opened = [];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -37,7 +39,8 @@ function startGame () {
 		html += '</li>';
 	}
 	deck.innerHTML += html;
-
+	opened = [];
+	html = "";
 }
 
 function emptyDeck () {
@@ -75,3 +78,37 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+deck.addEventListener('click', function(e) {
+	if(e.target.nodeName === 'LI' && !e.target.classList.contains("open")){
+		turnCard(e);
+		addToOpened(e);
+	}
+	if(opened.length > 1) {
+		if(opened[0] === opened[1]) {
+			let openCards = document.querySelectorAll('.open');
+			openCards[0].classList.add('match');
+			openCards[1].classList.add('match');
+			openCards[0].classList.remove('open');
+			openCards[1].classList.remove('open');
+			opened = [];
+		} else {
+			let openCards = document.querySelectorAll('.open');
+	setTimeout(function() {
+			openCards[0].classList.remove('open', 'show');
+			openCards[1].classList.remove('open', 'show');
+		    }, 400);
+			opened = [];
+		}
+	}
+})
+
+function turnCard(evt) {
+	evt.target.classList.add('open', 'show');
+}
+
+function addToOpened(evt) {
+	opened.push(evt.target.innerHTML);
+}
+
+startGame();

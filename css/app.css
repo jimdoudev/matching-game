@@ -106,23 +106,19 @@ span {
     background: #cc1212;
 }
 
-.deck .card:hover,
-.deck .card:focus {
+.deck .card:hover,{
     background: #bbbbbb;
 }
 
-.deck .card.open:hover,
-.deck .card.open:focus {
+.deck .card.open:hover,{
     background: #696969;
 }
 
-.deck .card.unmatch:hover,
-.deck .card.unmatch:focus {
+.deck .card.unmatch:hover,{
     background: #cc1212;
 }
 
-.deck .card.match:hover,
-.deck .card.match:focus {
+.deck .card.match:hover,{
     background: #90ee90;
 }
 
@@ -214,6 +210,11 @@ span {
 }
 
 .results {
+    font-size: 0.4em;
+    text-align: center;
+}
+
+.play-again {
     font-size: 0.4em;
     text-align: center;
 }

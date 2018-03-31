@@ -167,6 +167,14 @@ span {
     text-shadow: none;
     border-radius: 15px;
     text-align: center;
+    animation-name: animatefromtop;
+    animation-duration: 0.5s;
+    position: relative;
+}
+
+@keyframes animatefromtop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
 }
 
 .results {

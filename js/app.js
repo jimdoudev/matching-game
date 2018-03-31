@@ -25,6 +25,10 @@ let list = ["fa-diamond",
 	moves = document.querySelector('.moves');
 	moveCounter = 0;
 	stars = document.querySelector('.stars').children;
+	restart = document.querySelector('.restart');
+	timer = document.querySelector(".timer");
+
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -42,10 +46,6 @@ function startGame () {
 		html += '</li>';
 	}
 	deck.innerHTML += html;
-	opened = [];
-	html = "";
-	moveCounter = 0;
-	starEvaluation();
 }
 
 function emptyDeck () {
@@ -55,7 +55,6 @@ function emptyDeck () {
 		fc = deck.firstChild;
 	};
 }
-
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -86,11 +85,21 @@ function shuffle(array) {
  */
 
 deck.addEventListener('click', function(e) {
-	if(e.target.nodeName === 'LI' && !e.target.classList.contains("open")){
+	if(e.target.nodeName === 'LI' && !e.target.classList.contains("open")) {
 		turnCard(e);
 		addToOpened(e);
 	}
 	checkMatch();
+})
+
+deck.addEventListener('click', function(e) {
+	if(e.target.nodeName === 'LI') {
+		startTimer();
+	}
+}, {once: true})
+
+restart.addEventListener('click', function() {
+	location.reload();
 })
 
 function checkMatch() {
@@ -118,11 +127,6 @@ function checkMatch() {
 }
 
 function starEvaluation() {
-	if (moveCounter <= 10) {
-		for(let i = 0; i < stars.length; i++ ) {
-			stars[i].style.color = "yellow";
-		}
-	}
 	if (moveCounter > 10) {
 		stars[2].style.removeProperty('color');
 	}
@@ -142,6 +146,23 @@ function turnCard(evt) {
 
 function addToOpened(evt) {
 	opened.push(evt.target.innerHTML);
+}
+//Function timer with some modifications from https://jsfiddle.net/hzLf3e38/4/
+let t;
+function startTimer() {
+    let time = 0
+    t = setInterval(function(){
+        time++
+        let sec = time % 60
+        let min = (time-sec)/60 % 60
+        let hour = (time-sec-min*60)/3600
+        let str= ("0"+min).slice(-2)+':'+("0"+sec).slice(-2)
+        document.querySelector(".timer").textContent = str;
+    },1000);
+}
+
+function stopTimer() {
+	clearInterval(t);
 }
 
 startGame();

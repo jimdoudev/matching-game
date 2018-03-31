@@ -24,6 +24,7 @@ let list = ["fa-diamond",
 	opened = [];
 	moves = document.querySelector('.moves');
 	moveCounter = 0;
+	stars = document.querySelector('.stars').children;
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -44,6 +45,7 @@ function startGame () {
 	opened = [];
 	html = "";
 	moveCounter = 0;
+	starEvaluation();
 }
 
 function emptyDeck () {
@@ -94,23 +96,38 @@ deck.addEventListener('click', function(e) {
 function checkMatch() {
 	if(opened.length > 1) {
 		if(opened[0] === opened[1]) {
-			let openCards = document.querySelectorAll('.open');
+			const openCards = document.querySelectorAll('.open');
 			openCards[0].classList.add('match');
 			openCards[1].classList.add('match');
 			openCards[0].classList.remove('open');
 			openCards[1].classList.remove('open');
 			opened = [];
 			counter();
-
+			starEvaluation();
 		} else {
-			let openCards = document.querySelectorAll('.open');
+			const openCards = document.querySelectorAll('.open');
 			setTimeout(function() {
 				openCards[0].classList.remove('open', 'show');
 				openCards[1].classList.remove('open', 'show');
 		    	}, 400);
 			opened = [];
 			counter();
+			starEvaluation();
 		}
+	}
+}
+
+function starEvaluation() {
+	if (moveCounter <= 10) {
+		for(let i = 0; i < stars.length; i++ ) {
+			stars[i].style.color = "yellow";
+		}
+	}
+	if (moveCounter > 10) {
+		stars[2].style.removeProperty('color');
+	}
+	if (moveCounter > 18) {
+		stars[1].style.removeProperty('color');
 	}
 }
 

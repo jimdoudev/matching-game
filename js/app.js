@@ -99,7 +99,7 @@ function checkMatch() {
             setTimeout(function() {
                 openCards[0].classList.remove('open', 'show', 'animated', 'tada');
                 openCards[1].classList.remove('open', 'show', 'animated', 'tada');
-            }, 300);
+            }, 350);
             opened = [];
             counter();
             starEvaluation();
@@ -111,7 +111,7 @@ function checkMatch() {
             setTimeout(function() {
                 openCards[0].classList.remove('open', 'show', 'animated', 'wobble', 'unmatch');
                 openCards[1].classList.remove('open', 'show', 'animated', 'wobble', 'unmatch');
-            }, 300);
+            }, 350);
             opened = [];
             counter();
             starEvaluation();
@@ -131,7 +131,7 @@ function starEvaluation() {
 
 //Resets the Star Count
 function starReset() {
-	if (moveCounter > 10) {
+    if (moveCounter > 10) {
         stars[2].style.color = "yellow";
         stars[1].style.color = "yellow";
     }
@@ -144,8 +144,8 @@ function counter() {
 }
 //Resets the move counter
 function resetCounter() {
-	moveCounter = 0;
-	moves.textContent = 0;
+    moveCounter = 0;
+    moves.textContent = 0;
 }
 
 //Turns the card
@@ -160,6 +160,7 @@ function addToOpened(evt) {
 
 //Function timer with some modifications from https://jsfiddle.net/hzLf3e38/4/
 let t;
+
 function startTimer() {
     let time = 0
     t = setInterval(function() {
@@ -178,8 +179,8 @@ function stopTimer() {
 
 //Resets the timer
 function resetTimer() {
-	clearInterval(t);
-	timer.textContent = "00:00";
+    clearInterval(t);
+    timer.textContent = "00:00";
 }
 
 /*
@@ -198,6 +199,7 @@ deck.addEventListener('click', function(e) {
     }
 })
 
+
 //Starts the timer on click
 deck.addEventListener('click', function(e) {
     if (e.target.nodeName === 'LI') {
@@ -215,10 +217,10 @@ restart.addEventListener('click', function() {
     html = "";
     startGame();
     deck.addEventListener('click', function(e) {
-    if (e.target.nodeName === 'LI') {
-        startTimer();
-    	}
-	}, { once: true })
+        if (e.target.nodeName === 'LI') {
+            startTimer();
+        }
+    }, { once: true })
 })
 
 //Turns off and on the sound
@@ -244,11 +246,10 @@ closeModal.addEventListener('click', function() {
     startGame();
     modal.style.display = "none";
     deck.addEventListener('click', function(e) {
-    if (e.target.nodeName === 'LI') {
-        startTimer();
-    	}
-	}, { once: true })
+        if (e.target.nodeName === 'LI') {
+            startTimer();
+        }
+    }, { once: true })
 })
 
-//Starts the game!
 startGame();

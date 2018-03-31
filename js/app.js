@@ -99,7 +99,7 @@ function checkMatch() {
             setTimeout(function() {
                 openCards[0].classList.remove('open', 'show', 'animated', 'tada');
                 openCards[1].classList.remove('open', 'show', 'animated', 'tada');
-            }, 400);
+            }, 300);
             opened = [];
             counter();
             starEvaluation();
@@ -111,7 +111,7 @@ function checkMatch() {
             setTimeout(function() {
                 openCards[0].classList.remove('open', 'show', 'animated', 'wobble', 'unmatch');
                 openCards[1].classList.remove('open', 'show', 'animated', 'wobble', 'unmatch');
-            }, 400);
+            }, 300);
             opened = [];
             counter();
             starEvaluation();
@@ -235,7 +235,19 @@ sound.addEventListener('click', function() {
 
 //Closes the congratulations modal and restarts the game
 closeModal.addEventListener('click', function() {
-    location.reload();
+    resetTimer();
+    starReset();
+    resetCounter();
+    opened = [];
+    matches = 0;
+    html = "";
+    startGame();
+    modal.style.display = "none";
+    deck.addEventListener('click', function(e) {
+    if (e.target.nodeName === 'LI') {
+        startTimer();
+    	}
+	}, { once: true })
 })
 
 //Starts the game!

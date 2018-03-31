@@ -24,9 +24,14 @@ let list = ["fa-diamond",
 	opened = [];
 	moves = document.querySelector('.moves');
 	moveCounter = 0;
+	matches = 0;
 	stars = document.querySelector('.stars').children;
 	restart = document.querySelector('.restart');
 	timer = document.querySelector(".timer");
+	results = document.querySelector(".results");
+	rating = document.querySelector('.stars');
+	modal = document.getElementById('modal');
+	closeModal = document.querySelector(".close");
 
 
 /*
@@ -56,6 +61,14 @@ function emptyDeck () {
 	};
 }
 
+function endGame() {
+	stopTimer();
+	results.innerHTML = `<span>Moves: ${moveCounter}</span>
+						<span>Time: ${timer.textContent}</span>
+						<span class="score-panel">Rating:
+						<ul class="stars">${rating.innerHTML}</ul></span>`
+	modal.style.display = "block";
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -90,6 +103,9 @@ deck.addEventListener('click', function(e) {
 		addToOpened(e);
 	}
 	checkMatch();
+	if(matches === 8) {
+		endGame();
+	}
 })
 
 deck.addEventListener('click', function(e) {
@@ -99,6 +115,10 @@ deck.addEventListener('click', function(e) {
 }, {once: true})
 
 restart.addEventListener('click', function() {
+	location.reload();
+})
+
+closeModal.addEventListener('click', function() {
 	location.reload();
 })
 
@@ -113,6 +133,7 @@ function checkMatch() {
 			opened = [];
 			counter();
 			starEvaluation();
+			matches++;
 		} else {
 			const openCards = document.querySelectorAll('.open');
 			setTimeout(function() {
@@ -157,7 +178,7 @@ function startTimer() {
         let min = (time-sec)/60 % 60
         let hour = (time-sec-min*60)/3600
         let str= ("0"+min).slice(-2)+':'+("0"+sec).slice(-2)
-        document.querySelector(".timer").textContent = str;
+        timer.textContent = str;
     },1000);
 }
 

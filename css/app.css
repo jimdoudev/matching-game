@@ -38,6 +38,14 @@ h1 {
 
 }
 
+.restart:hover {
+    color: #2e3d49;
+    cursor: pointer;
+}
+
+span {
+    padding-left: 10px;
+}
 /*
  * Styles for the deck of cards
  */
@@ -97,6 +105,16 @@ h1 {
     font-size: 1em;
 }
 
+.deck .card:hover,
+.deck .card:focus {
+    background-color: #bbbbbb;
+}
+
+.deck .card.open:hover,
+.deck .card.open:focus {
+    background: #696969;
+}
+
 /*
  * Styles for the Score Panel
  */
@@ -105,7 +123,6 @@ h1 {
     text-align: center;
     width: 80%;
     margin-bottom: 10px;
-    justify-content: space-between;
 }
 
 .score-panel .stars {
@@ -126,39 +143,95 @@ h1 {
 }
 
 /*
+ * Styles for the modal
+ */
+
+#modal {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.4);
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: none;
+}
+
+.modal-content {
+    background-color: #d5c3c0;
+    margin: 35% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    color: black;
+    text-shadow: none;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.results {
+    font-size: 0.4em;
+    text-align: center;
+}
+
+.close {
+    float: right;
+    font-size: 1.5em;
+}
+
+.close:hover {
+    color: #bbbbbb;
+    cursor: pointer;
+}
+
+/*
  * Media queries
  */
 
 @media screen and (min-width: 320px) {
     .deck .card.show {
     font-size: 1.5em;
-}
+    }
 
-.deck .card.match {
+    .deck .card.match {
     font-size: 1.5em;
-}
+    }
 
-h1 {
-    font-size: 2.5em;
-}
+    h1 {
+        font-size: 2.5em;
+    }
+    .modal-content {
+        font-size: 1.5em;
+        margin: 25% auto;
+    }
 }
 
 @media screen and (min-width: 550px) {
     .deck .card.show {
     font-size: 2em;
-}
+    }
 
-.deck .card.match {
+    .deck .card.match {
     font-size: 2em;
+    }
+
+    h1 {
+        font-size: 3em;
+    }
+    .modal-content {
+        font-size: 2em;
+        margin: 20% auto;
+    }
+    .container {
+        width: 550px;
+        margin-right: auto;
+        margin-left: auto;
+    }
 }
 
-h1 {
-    font-size: 3em;
-}
-
-.container {
-    width: 550px;
-    margin-right: auto;
-    margin-left: auto;
-}
+@media screen and (min-width: 800px) {
+    .modal-content {
+        font-size: 4em;
+        margin: 15% auto;
+    }
 }

@@ -22,6 +22,8 @@ let list = ["fa-diamond",
 	html = "";
 	card = document.querySelector('.card');
 	opened = [];
+	moves = document.querySelector('.moves');
+	moveCounter = 0;
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -41,6 +43,7 @@ function startGame () {
 	deck.innerHTML += html;
 	opened = [];
 	html = "";
+	moveCounter = 0;
 }
 
 function emptyDeck () {
@@ -50,6 +53,7 @@ function emptyDeck () {
 		fc = deck.firstChild;
 	};
 }
+
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -84,6 +88,10 @@ deck.addEventListener('click', function(e) {
 		turnCard(e);
 		addToOpened(e);
 	}
+	checkMatch();
+})
+
+function checkMatch() {
 	if(opened.length > 1) {
 		if(opened[0] === opened[1]) {
 			let openCards = document.querySelectorAll('.open');
@@ -92,16 +100,24 @@ deck.addEventListener('click', function(e) {
 			openCards[0].classList.remove('open');
 			openCards[1].classList.remove('open');
 			opened = [];
+			counter();
+
 		} else {
 			let openCards = document.querySelectorAll('.open');
-	setTimeout(function() {
-			openCards[0].classList.remove('open', 'show');
-			openCards[1].classList.remove('open', 'show');
-		    }, 400);
+			setTimeout(function() {
+				openCards[0].classList.remove('open', 'show');
+				openCards[1].classList.remove('open', 'show');
+		    	}, 400);
 			opened = [];
+			counter();
 		}
 	}
-})
+}
+
+function counter() {
+	moveCounter += 1;
+	moves.textContent = moveCounter;
+}
 
 function turnCard(evt) {
 	evt.target.classList.add('open', 'show');

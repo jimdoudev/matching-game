@@ -68,7 +68,7 @@ h1 {
 
 .deck .card {
     width: 20%;
-    background: #2e3d49;
+    background: center/cover url('../img/tile.jpg');
     font-size: 0;
     text-shadow: -0.1px 0 #696969, 0 0.1px #696969, 0.1px 0 #696969, 0 -0.1px #696969;
     color: #000;
@@ -89,7 +89,6 @@ h1 {
 }
 
 .deck .card.open {
-    transform: rotateY(0);
     background: #696969;
     cursor: default;
 }

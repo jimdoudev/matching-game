@@ -99,19 +99,19 @@ function checkMatch() {
             setTimeout(function() {
                 openCards[0].classList.remove('open', 'show', 'animated', 'tada');
                 openCards[1].classList.remove('open', 'show', 'animated', 'tada');
-            }, 350);
+            }, 500);
             opened = [];
             counter();
             starEvaluation();
             matches++;
         } else {
             const openCards = document.querySelectorAll('.open');
-            openCards[0].classList.add('open', 'show', 'animated', 'wobble', 'unmatch');
-            openCards[1].classList.add('open', 'show', 'animated', 'wobble', 'unmatch');
+            openCards[0].classList.add('open', 'show', 'animated', 'bounceOut', 'unmatch');
+            openCards[1].classList.add('open', 'show', 'animated', 'bounceOut', 'unmatch');
             setTimeout(function() {
-                openCards[0].classList.remove('open', 'show', 'animated', 'wobble', 'unmatch');
-                openCards[1].classList.remove('open', 'show', 'animated', 'wobble', 'unmatch');
-            }, 350);
+                openCards[0].classList.remove('open', 'show', 'animated', 'bounceOut', 'unmatch');
+                openCards[1].classList.remove('open', 'show', 'animated', 'bounceOut', 'unmatch');
+            }, 500);
             opened = [];
             counter();
             starEvaluation();
